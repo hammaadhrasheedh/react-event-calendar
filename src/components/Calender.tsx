@@ -1,50 +1,12 @@
 import moment from "moment";
 import * as React from "react";
 import BtnIcon from "./BtnIcon";
-
-type DateType = moment.MomentInput;
-type EventType = "Dots" | "Fill";
-
-interface IEvents {
-  date: DateType;
-  color: string;
-}
-
-interface ICalenderProps {
-  renderDay?: Function | Boolean;
-  renderEvent?: Function | Boolean;
-  defaultDay?: DateType;
-  defaultSelected?: moment.Moment;
-  holidays?: Array<DateType>;
-  events?: Array<IEvents>;
-  eventType?: EventType;
-  prefixID?: string;
-  defaultDayFormater?: string;
-  date?: DateType;
-  displayWeek?: Boolean;
-  dateFormat?: string;
-  prevBtn?: Function | Boolean;
-  nextBtn?: Function | Boolean;
-  headerType?: "EvenSpread" | "ActionSeparate";
-}
-interface IDayBlockProps {
-  isToday: Boolean;
-  isSelectedDay: Boolean;
-  isSameMonth: Boolean;
-  isHoliday: Boolean;
-  defaultFormatedDay: String;
-  day: DateType;
-  events?: Array<IEvents>;
-  index: any;
-}
-interface Week {
-  days: Array<moment.Moment>;
-}
+import { DateType, ICalenderProps, IDayBlockProps, IEvents, Week } from "./Calender.types";
 
 const Calender: React.FunctionComponent<ICalenderProps> = ({
   renderDay = false,
+  renderDayContent = false,
   renderEvent = false,
-  defaultDay = false,
   holidays = [],
   defaultSelected,
   eventType = "Dots",
@@ -57,8 +19,10 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
   prevBtn = false,
   nextBtn = false,
   headerType = "EvenSpread",
+  onClickDay = () => {},
 }) => {
   const [calendar, setCalender] = React.useState<Array<Week>>([]);
+  const [highlighted, setHighlighted] = React.useState<Array<DateType>>([]);
   const [selectedDay, setSelectedDay] = React.useState<DateType>(
     moment(defaultSelected)
   );
@@ -69,6 +33,13 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
   );
   const today = moment();
   const weekDayLength = 1;
+
+  React.useEffect(() => {
+    var formatedHolidays = holidays.map((holiday) =>
+      moment(holiday).format("YYYY-MM-DD")
+    );
+    setHighlighted(formatedHolidays);
+  }, [holidays]);
 
   React.useEffect(() => {
     var mDate = moment(date);
@@ -123,9 +94,11 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
     );
   };
 
-  const renderDefaultEvent = (event: IEvents, index:any) => {
+  const renderDefaultEvent = (event: IEvents, index: any) => {
     var { color } = event;
-    return <div className="dot" key={index} style={{ backgroundColor: color }}></div>;
+    return (
+      <div className="dot" key={index} style={{ backgroundColor: color }}></div>
+    );
   };
 
   const defaultPrevBtn = () => {
@@ -194,7 +167,7 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
     isSameMonth,
     isHoliday,
     events = [],
-    index
+    index,
   }: IDayBlockProps) => {
     return (
       <div
@@ -204,18 +177,20 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
             ${isToday ? "current-day" : ""}\
             ${isSelectedDay ? "selected-day" : ""}\
             ${!isSameMonth ? "another-month-day" : ""}\
-            ${isHoliday ? "holiday" : ""} 
+            ${isHoliday ? "holiday" : ""}\
+            ${events.length ? "has-events" : ''}
         `}
         style={
           eventType === "Fill" ? { background: events[0]?.color } : undefined
         }
         onClick={() => {
           setSelectedDay(day);
+          onClickDay(day);
         }}
       >
         <div className="day">
-          {typeof renderDay === "function"
-            ? renderDay({
+          {typeof renderDayContent === "function"
+            ? renderDayContent({
                 isToday,
                 defaultFormatedDay,
                 day,
@@ -223,10 +198,10 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
                 isSameMonth,
                 isHoliday,
                 events,
-                index
+                index,
               })
             : defaultFormatedDay}
-          {typeof renderDay !== "function" &&
+          {typeof renderDayContent !== "function" &&
           events.length > 0 &&
           eventType === "Dots" ? (
             <div className="flex events-container">
@@ -242,12 +217,48 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
     );
   };
 
-  const renderDayBlock = (day: moment.MomentInput, index:any) => {
+  const dayShellOnly = ({
+    isToday,
+    defaultFormatedDay,
+    day,
+    isSelectedDay,
+    isSameMonth,
+    isHoliday,
+    events = [],
+    index,
+  }: IDayBlockProps) => {
+    return (
+      <div
+        key={index}
+        id={prefixID + moment(day).format("MM-DD")}
+        onClick={() => {
+          setSelectedDay(day);
+          onClickDay(day);
+        }}
+      >
+        {typeof renderDay === "function" ?
+          renderDay({
+            isToday,
+            defaultFormatedDay,
+            day,
+            isSelectedDay,
+            isSameMonth,
+            isHoliday,
+            events,
+            index,
+          })
+          : null
+        }
+      </div>
+    );
+  };
+
+  const renderDayBlock = (day: moment.MomentInput, index: any) => {
     var momentDay = moment(day);
     var formatedDay = momentDay.format("YYYY-MM-DD");
     var defaultFormatedDay = momentDay.format(defaultDayFormater);
     var isToday = today.format("YYYY-MM-DD") === formatedDay;
-    var isHoliday = holidays.includes(formatedDay);
+    var isHoliday = highlighted.includes(formatedDay);
     var daysEvents = events.filter(
       (event: IEvents) =>
         moment(event.date).format("YYYY-MM-DD") === formatedDay
@@ -256,7 +267,7 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
       ? moment(selectedDay).format("YYYY-MM-DD") === formatedDay
       : false;
     var isSameMonth = activeDate.isSame(day, "month");
-    return dayBlock({
+    var dayParams = {
       isToday,
       defaultFormatedDay,
       day,
@@ -265,7 +276,10 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
       isHoliday,
       events: daysEvents,
       index,
-    });
+    };
+    return typeof renderDay === "function"
+      ? dayShellOnly(dayParams)
+      : dayBlock(dayParams);
   };
 
   return (

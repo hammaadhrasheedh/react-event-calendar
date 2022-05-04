@@ -1,5 +1,3 @@
-import * as React from "react"
-
 const BtnIcon = (props:any) => (
   <svg
     width={6}

@@ -1,46 +1,155 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Event Calender
 
-## Available Scripts
+A small & customizable react calendar component to show your daily events for a given month.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Dotted and filled days for events
+- Customize day rendering
+- Customize event rendering
+- Show Holidays
+- Click a day to get the data to showcase on another component
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+Install react-event-calendar with npm
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+  npm install @hammaadhrasheedh/react-event-calendar
+```
+    
+## Simple Example
 
-### `npm run build`
+```javascript
+import Calender from '@hammaadhrasheedh/react-event-calendar'
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+var events = [
+    {
+        date: "2022-05-02",
+        color: "red",
+    },
+    {
+        date: new Date('2022-05-23'),
+        color: "pink",
+    },
+    {
+        date: "2022-05-02",
+        color: "#c3c3c3",
+    },
+];
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<Calender
+    eventType="Fill"
+    date={'2022-05-09'}
+    events={events}
+/>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Props
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Prop | Type  | Description | Example |
+| :-------- | :------- | :------- | :------------------------- |
+| `defaultSelected` | `Moment\|Date\|string` | Selects a day by deafult when calender renders | `'2022-12-22'` |
+| `holidays` | `Array<Moment\|Date\|string>` | Highlight holidays in unified style | `['2022-12-22', new Date(), moment()]`|
+| `events` | `Array<Object>` | Events to mark on the calender | `[{date: "2022-05-02", color: "red", extraData:any}]` |
+| `eventType` | `'Dots' \| 'Fill'` | Determines how the events will be dispalyed in calender. *Default: 'Dots'*| |
+| `prefixID` | `string` | Prefixes to the unique id to each date block | |
+| `defaultDayFormater` | `string` | Format how days are displayed in calednder. *Default: 'DD'* | [moment docs](https://momentjs.com/docs/#/displaying/) |
+| `date` | `Moment\|Date\|string` | Determines which month to be shown in calender, *Default: today* | `'2022-12-22' \| new Date() \| moment()` |
+| `displayWeek` | `Boolean` | Show or hide week section of calender | |
+| `dateFormat` | `string` | Format how calender date is displayed in header of calednder. *Default: 'MMM YYYY'* | [moment docs](https://momentjs.com/docs/#/displaying/) |
+| `headerType` | `'EvenSpread' \| 'ActionSeparate'` | Formats the layout of the header ( date and action buttons) | |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Methods
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+| Prop | Params  | Description | Example |
+| :-------- | :------- | :------- | :------------------------- |
+| `renderDay` | `{isToday, defaultFormatedDay, day, isSelectedDay, isSameMonth, isHoliday, events, index}` | Funciton to customize the content the day | [Render Day](#render-day) |
+| `renderDayContent` | `{isToday, defaultFormatedDay, day, isSelectedDay, isSameMonth, isHoliday, events, index}` | Funciton to customize the render of the full day block| |
+| `renderEvent` | `event, index` | Funciton to customize the UI of the events | |
+| `prevBtn` | | Funciton to customize the icon/content of previous button | |
+| `nextBtn` | | Funciton to customize the icon/content of next button | |
+| `onClickDay` | `day` | Calls the function when a day is clicked | |
+
+
+## Examples
+#### Render Day
+```javascript 
+const renderDay = ({
+    isToday,
+    defaultFormatedDay,
+    day,
+    isSelectedDay,
+    isSameMonth,
+    isHoliday,
+    events,
+    index,
+  }) => {
+
+    //   hide days from other months
+    if(!isSameMonth){
+      return null
+    }
+
+    return (
+      <div>
+        <div
+          className={`day-block cursor-pointer\
+           ${isToday ? "current-day" : ""}\
+           ${isSelectedDay ? "selected-day" : ""}\
+           ${!isSameMonth ? "another-month-day" : ""}\
+           ${isHoliday ? "holiday" : ""} 
+       `}
+        >
+          {defaultFormatedDay}
+        </div>
+      </div>
+    );
+  };
+```
+
+#### Render Event
+```javascript 
+
+  const eventsStyles =  `.events-container{
+    top:0;
+    right:0;
+  }
+  .has-events .day{
+    color:white
+  }
+  `
+
+  const renderEvent = (event:any, index:any) => {
+    return (
+      <div style={{backgroundImage: event.extraData.gradient, width:'100%', height:'100%', zIndex:-1}}>
+      </div>
+    )
+
+  }
+  return (
+    <div>
+      <style> {eventsStyles} </style>
+      <Calender
+        date={"2022-05-09"}
+        renderEvent={renderEvent}
+        events={[
+          {
+            date: "2022-05-21",
+            color: "#c3c3c3",
+            extraData:{gradient:'linear-gradient(to top, #f77062 0%, #fe5196 100%)'}
+          },
+        ]}
+      />
+    </div>
+  );
+```
+
