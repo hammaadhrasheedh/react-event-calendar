@@ -6,6 +6,7 @@ import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import copy from 'rollup-plugin-copy';
 
 const packageJson = require('./package.json');
 
@@ -32,7 +33,12 @@ export default [
             commonjs(),
             typescript({ tsconfig: './tsconfig.json' }),
             postcss(),
-            terser()
+            terser(),
+            copy({
+                targets: [
+                  { src: 'src/themes/**/*', dest: 'dist/themes' }
+                ]
+              })
         ],
     },
     {
