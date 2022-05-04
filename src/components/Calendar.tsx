@@ -1,9 +1,9 @@
 import moment from "moment";
 import * as React from "react";
 import BtnIcon from "./BtnIcon";
-import { DateType, ICalenderProps, IDayBlockProps, IEvents, Week } from "./Calender.types";
+import { DateType, ICalendarProps, IDayBlockProps, IEvents, Week } from "./Calendar.types";
 
-const Calender: React.FunctionComponent<ICalenderProps> = ({
+const Calendar: React.FunctionComponent<ICalendarProps> = ({
   renderDay = false,
   renderDayContent = false,
   renderEvent = false,
@@ -21,7 +21,7 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
   headerType = "EvenSpread",
   onClickDay = () => {},
 }) => {
-  const [calendar, setCalender] = React.useState<Array<Week>>([]);
+  const [calendar, setCalendar] = React.useState<Array<Week>>([]);
   const [highlighted, setHighlighted] = React.useState<Array<DateType>>([]);
   const [selectedDay, setSelectedDay] = React.useState<DateType>(
     moment(defaultSelected)
@@ -73,7 +73,7 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
       //   console.log(week);
       weeks.push(week);
     }
-    setCalender([...weeks]);
+    setCalendar([...weeks]);
   }, [startDay, endDay]);
 
   const formatWeekDay = (weekDay: String) => {
@@ -300,4 +300,4 @@ const Calender: React.FunctionComponent<ICalenderProps> = ({
   );
 };
 
-export default Calender;
+export default Calendar;

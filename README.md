@@ -1,5 +1,5 @@
 
-# React Event Calender
+# React Event Calendar
 
 A small & customizable react calendar component to show your daily events for a given month.
 
@@ -23,7 +23,7 @@ Install react-event-calendar with npm
 ## Simple Example
 
 ```javascript
-import Calender from '@hammaadhrasheedh/react-event-calendar'
+import Calendar from '@hammaadhrasheedh/react-event-calendar'
 
 var events = [
     {
@@ -40,7 +40,7 @@ var events = [
     },
 ];
 
-<Calender
+<Calendar
     eventType="Fill"
     date={'2022-05-09'}
     events={events}
@@ -138,7 +138,7 @@ const renderDay = ({
   return (
     <div>
       <style> {eventsStyles} </style>
-      <Calender
+      <Calendar
         date={"2022-05-09"}
         renderEvent={renderEvent}
         events={[

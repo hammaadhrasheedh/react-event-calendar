@@ -7,7 +7,7 @@ export interface IEvents {
   extraData?: any;
 }
 
-export interface ICalenderProps {
+export interface ICalendarProps {
   renderDay?: Function | Boolean;
   renderDayContent?: Function | Boolean;
   renderEvent?: Function | Boolean;

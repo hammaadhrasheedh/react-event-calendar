@@ -1,5 +1,5 @@
 import "./App.css";
-import Calender from "./components/Calender";
+import Calendar from "./components/Calendar";
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
   return (
     <div>
       <style> {eventsStyles} </style>
-      <Calender
+      <Calendar
         date={"2022-05-09"}
         renderEvent={renderEvent}
         events={[

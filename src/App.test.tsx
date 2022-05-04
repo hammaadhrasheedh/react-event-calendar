@@ -1,21 +1,21 @@
 import { render, screen } from "@testing-library/react";
-import Calender from "./components/Calender";
+import Calendar from "./components/Calendar";
 
 test("renders May", () => {
-  render(<Calender date={"2022-05-04"} />);
+  render(<Calendar date={"2022-05-04"} />);
   const Date = screen.getByText(/May/i);
   expect(Date).toBeInTheDocument();
 });
 
 test("renders 15th May", () => {
-  render(<Calender date={"2022-05-24"} />);
+  render(<Calendar date={"2022-05-24"} />);
   const Date = screen.getByText(/15/i);
   expect(Date).toBeInTheDocument();
 });
 
 // test("renders Events", () => {
 //   render(
-//     <Calender
+//     <Calendar
 //       date={"2022-05-04"}
 //       events={[
 //         {
