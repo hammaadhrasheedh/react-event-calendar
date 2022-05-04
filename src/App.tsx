@@ -1,4 +1,4 @@
-import "./App.css";
+import "./themes/Default.css";
 import Calendar from "./components/Calendar";
 
 function App() {

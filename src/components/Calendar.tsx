@@ -2,6 +2,7 @@ import moment from "moment";
 import * as React from "react";
 import BtnIcon from "./BtnIcon";
 import { DateType, ICalendarProps, IDayBlockProps, IEvents, Week } from "./Calendar.types";
+import '../themes/Default.css'
 
 const Calendar: React.FunctionComponent<ICalendarProps> = ({
   renderDay = false,
