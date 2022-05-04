@@ -35,7 +35,10 @@ const Calendar: React.FunctionComponent<ICalendarProps> = ({
   const weekDayLength = 1;
 
   React.useEffect(() => {
-    var formatedHolidays = holidays.map((holiday) =>
+    if(!holidays.length){
+      return
+    }
+    var formatedHolidays = [...holidays].map((holiday) =>
       moment(holiday).format("YYYY-MM-DD")
     );
     setHighlighted(formatedHolidays);
