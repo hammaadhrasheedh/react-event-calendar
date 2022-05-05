@@ -14,10 +14,8 @@
     cursor: pointer;
   }
   .day-block{
-    /* padding: 1rem; */
   }
   .week-day-block{
-    /* padding: 0.8rem; */
   }
   .day{
     width: 80%;
@@ -30,14 +28,10 @@
 
   .week .day-block.current-day .day{
     background-color: #5e5e5e;
-    /* color: #444444; */
-    /* color: #737373; */
   }
   .week .day-block.selected-day .day{
     background-color: #ffa69e;
     color: #444444;
-    /* border: 1px solid #ffa69e; */
-    /* color: #eeeeee */
   }
   .week .day-block.selected-day.current-day .day{
     box-shadow:rgb(254 166 158 / 50%) 0px 0px 0px 2px;
@@ -51,19 +45,11 @@
   }
   .week .day-block.current-day:hover .day,
   .week .day-block:hover .day{
-    /* background: #eeeeee; */
-    /* box-shadow: rgb(255 255 255) 0px 0px 0px 1px, rgb(137 153 115) 0px 0px 0px 2px, rgb(0 0 0 / 5%) 0px 1px 2px 0px; */
     color: #444444;
     background-color: #ffa69e;
-    /* border: 1px solid #ffa69e; */
   }
   .week .day-block.selected-day:hover .day{
-    /* background-color: #708090;
-    color: #eeeeee */
-    
     box-shadow: rgb(254 166 158 / 50%) 0px 0px 0px 2px;
-    /* background-color: transparent; */
-    /* border: 1px solid #ffa69e; */
   }
   .dot{
     width: 4px;
@@ -114,12 +100,10 @@
   }
   .weeks{
     margin-bottom: 10px;
-    /* margin-top: 10px; */
   }
   .events-container{
     position: absolute;
     bottom: 6px;
-    /* left: 2px; */
   }
   .events-container .dot{
     border-radius: 100%;
@@ -130,7 +114,6 @@
   }
   .weeks .week-day-block{
     border: 1px solid transparent;
-    /* border-top: 1px solid transparent; */
     display: flex;
     margin: 1px;
     align-items: center;
@@ -140,7 +123,6 @@
     height: 40px;
     font-size: 12px;
     color: #999999;
-    /* border-bottom: 1px solid transparent; */
   }
   .rotate-180{
     transform: rotate(180deg);
@@ -152,7 +134,6 @@
     overflow: hidden;
     position: relative;
     overflow: hidden;
-    /* border-right: 1px solid transparent; */
     width: 40px;
     height: 40px;
     display: flex;
@@ -160,16 +141,13 @@
     justify-content: center;
     font-size: 12px;
     color: #f2f2f2;
-    /* border-bottom: 1px solid transparent; */
   }
   .current-date{
     color: #ffffff;
   }
   .week .day-block:first-child,
   .weeks .week-day-block:first-child{
-    /* border: 1px solid transparent; */
   }
   .days .day-block:last-child,
   .weeks .week-day-block:last-child{
-    /* border-right: 1px solid transparent; */
   }

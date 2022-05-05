@@ -14,10 +14,8 @@
   cursor: pointer;
 }
 .day-block{
-  /* padding: 1rem; */
 }
 .week-day-block{
-  /* padding: 0.8rem; */
 }
 .day{
   width: 100%;
@@ -33,7 +31,6 @@
 }
 .week .day-block.current-day{
   background-color: #eeeeee;
-  /* color: #eeeeee */
   color: #555555;
 }
 .week .day-block.another-month-day{
@@ -93,7 +90,6 @@
 }
 .weeks{
   margin-bottom: 10px;
-  /* margin-top: 10px; */
 }
 .events-container{
   position: absolute;

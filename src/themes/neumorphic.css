@@ -14,10 +14,8 @@
     cursor: pointer;
   }
   .day-block{
-    /* padding: 1rem; */
   }
   .week-day-block{
-    /* padding: 0.8rem; */
   }
   .day{
     width: 80%;
@@ -35,7 +33,6 @@
     box-shadow:  3px 2px 6px #d9d9d9,
                  -3px -2px 6px #ffffff;
     color: #b4b4b4;
-    /* color: #737373; */
   }
   .week .day-block.selected-day .day{
     border-radius: 6px;
@@ -43,8 +40,6 @@
     box-shadow:  3px 2px 6px #d9d9d9,
                 -3px -2px 6px #ffffff;
     color: #b4b4b4;
-    /* border: 1px solid #b5c99a; */
-    /* color: #eeeeee */
   }
   .week .day-block.selected-day.current-day .day{
     border-radius: 6px;
@@ -64,25 +59,18 @@
   }
   .week .day-block.current-day:hover .day,
   .week .day-block:hover .day{
-    /* background: #eeeeee; */
     color: #b4b4b4;
-    /* background-color: #b5c99a; */
     border-radius: 6px;
     background: #ffffff;
     box-shadow:  3px 2px 6px #d9d9d9,
                 -3px -2px 6px #ffffff;
-    /* border: 1px solid #b5c99a; */
   }
   .week .day-block.selected-day:hover .day{
-    /* background-color: #708090;
-    color: #eeeeee */
     border-radius: 6px;
     background: #ffffff;
     box-shadow:  3px 2px 6px #d9d9d9,
                  -3px -2px 6px #ffffff;
     color: #b4b4b4;
-    /* background-color: transparent; */
-    /* border: 1px solid #b5c99a; */
   }
   .dot{
     width: 4px;
@@ -125,16 +113,14 @@
   .calender{
     margin: 10px;
     display: inline-flex;
-    /* background: #e0e0e0; */
   }
   .weeks{
     margin-bottom: 20px;
     margin-top: 10px;
-    /* margin-top: 10px; */
     border-radius: 50px;
-background: #ffffff;
-box-shadow:  4px 4px 8px #d9d9d9,
-             -4px -4px 8px #ffffff;
+    background: #ffffff;
+    box-shadow:  4px 4px 8px #d9d9d9,
+                -4px -4px 8px #ffffff;
   }
   .events-container{
     position: absolute;
@@ -150,7 +136,6 @@ box-shadow:  4px 4px 8px #d9d9d9,
   }
   .weeks .week-day-block{
     border: 1px solid transparent;
-    /* border-top: 1px solid transparent; */
     display: flex;
     margin: 1px;
     align-items: center;
@@ -160,19 +145,14 @@ box-shadow:  4px 4px 8px #d9d9d9,
     height: 30px;
     font-size: 12px;
     color: #999999;
-    /* border-bottom: 1px solid transparent; */
   }
   .rotate-180{
     transform: rotate(180deg);
   }
   .week .day-block{
     border: 1px solid transparent;
-    /* border-radius: 6px; */
     margin: 1px;
-    /* overflow: hidden; */
     position: relative;
-    /* overflow: hidden; */
-    /* border-right: 1px solid transparent; */
     width: 40px;
     height: 40px;
     display: flex;
@@ -180,16 +160,13 @@ box-shadow:  4px 4px 8px #d9d9d9,
     justify-content: center;
     font-size: 12px;
     color: #737373;
-    /* border-bottom: 1px solid transparent; */
   }
   .current-date{
     color: #5e5e5e;
   }
   .week .day-block:first-child,
   .weeks .week-day-block:first-child{
-    /* border: 1px solid transparent; */
   }
   .days .day-block:last-child,
   .weeks .week-day-block:last-child{
-    /* border-right: 1px solid transparent; */
   }
