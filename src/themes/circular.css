@@ -18,8 +18,8 @@
   .week-day-block{
   }
   .day{
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
@@ -87,7 +87,7 @@
   .days,
   .weeks{
   }
-  .calender{
+  .calendar{
     margin: 10px;
     display: inline-flex;
   }
@@ -124,12 +124,12 @@
   .week .day-block{
     border: 1px solid transparent;
     border-radius: 100%;
-    margin: 1px;
+    margin: 6px;
     overflow: hidden;
     position: relative;
     overflow: hidden;
-    width: 40px;
-    height: 40px;
+    width: 37px;
+    height: 37px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -11,6 +11,8 @@ A small & customizable react calendar component to show your daily events for a 
 - Show Holidays
 - Click a day to get the data to showcase on another component
 
+## Features
+[Demo](https://codesandbox.io/s/sample-for-hammaadhrasheedh-react-event-calendar-eg6fv6)
 
 ## Installation
 
@@ -19,11 +21,27 @@ Install react-event-calendar with npm
 ```bash
   npm install @hammaadhrasheedh/react-event-calendar
 ```
-    
+
+### Styles
+
+Get styles for the calendar
+
+```javascript
+  import '@hammaadhrasheedh/react-event-calendar/dist/themes/default.css'
+```
+Other out of the box styling options
+
+```javascript
+  import '@hammaadhrasheedh/react-event-calendar/dist/themes/circular.css'
+  import '@hammaadhrasheedh/react-event-calendar/dist/themes/clean.css'
+  import '@hammaadhrasheedh/react-event-calendar/dist/themes/neumorphic.css'
+  import '@hammaadhrasheedh/react-event-calendar/dist/themes/dark.css'
+```
+
 ## Simple Example
 
 ```javascript
-import Calendar from '@hammaadhrasheedh/react-event-calendar'
+import { Calendar } from '@hammaadhrasheedh/react-event-calendar'
 
 var events = [
     {
@@ -53,15 +71,15 @@ var events = [
 
 | Prop | Type  | Description | Example |
 | :-------- | :------- | :------- | :------------------------- |
-| `defaultSelected` | `Moment\|Date\|string` | Selects a day by deafult when calender renders | `'2022-12-22'` |
+| `defaultSelected` | `Moment\|Date\|string` | Selects a day by deafult when calendar renders | `'2022-12-22'` |
 | `holidays` | `Array<Moment\|Date\|string>` | Highlight holidays in unified style | `['2022-12-22', new Date(), moment()]`|
-| `events` | `Array<Object>` | Events to mark on the calender | `[{date: "2022-05-02", color: "red", extraData:any}]` |
-| `eventType` | `'Dots' \| 'Fill'` | Determines how the events will be dispalyed in calender. *Default: 'Dots'*| |
+| `events` | `Array<Object>` | Events to mark on the calendar | `[{date: "2022-05-02", color: "red", extraData:any}]` |
+| `eventType` | `'Dots' \| 'Fill'` | Determines how the events will be dispalyed in calendar. *Default: 'Dots'*| |
 | `prefixID` | `string` | Prefixes to the unique id to each date block | |
 | `defaultDayFormater` | `string` | Format how days are displayed in calednder. *Default: 'DD'* | [moment docs](https://momentjs.com/docs/#/displaying/) |
-| `date` | `Moment\|Date\|string` | Determines which month to be shown in calender, *Default: today* | `'2022-12-22' \| new Date() \| moment()` |
-| `displayWeek` | `Boolean` | Show or hide week section of calender | |
-| `dateFormat` | `string` | Format how calender date is displayed in header of calednder. *Default: 'MMM YYYY'* | [moment docs](https://momentjs.com/docs/#/displaying/) |
+| `date` | `Moment\|Date\|string` | Determines which month to be shown in calendar, *Default: today* | `'2022-12-22' \| new Date() \| moment()` |
+| `displayWeek` | `Boolean` | Show or hide week section of calendar | |
+| `dateFormat` | `string` | Format how calendar date is displayed in header of calednder. *Default: 'MMM YYYY'* | [moment docs](https://momentjs.com/docs/#/displaying/) |
 | `headerType` | `'EvenSpread' \| 'ActionSeparate'` | Formats the layout of the header ( date and action buttons) | |
 
 
@@ -72,11 +90,11 @@ var events = [
 
 | Prop | Params  | Description | Example |
 | :-------- | :------- | :------- | :------------------------- |
-| `renderDay` | `{isToday, defaultFormatedDay, day, isSelectedDay, isSameMonth, isHoliday, events, index}` | Funciton to customize the content the day | [Render Day](#render-day) |
-| `renderDayContent` | `{isToday, defaultFormatedDay, day, isSelectedDay, isSameMonth, isHoliday, events, index}` | Funciton to customize the render of the full day block| |
-| `renderEvent` | `event, index` | Funciton to customize the UI of the events | |
-| `prevBtn` | | Funciton to customize the icon/content of previous button | |
-| `nextBtn` | | Funciton to customize the icon/content of next button | |
+| `renderDay` | `{isToday, defaultFormatedDay, day, isSelectedDay, isSameMonth, isHoliday, events, index}` | Function to customize the render of the full day block | [Render Day](#render-day) |
+| `renderDayContent` | `{isToday, defaultFormatedDay, day, isSelectedDay, isSameMonth, isHoliday, events, index}` | Function to customize the content the day | |
+| `renderEvent` | `event, index` | Function to customize the UI of the events | |
+| `prevBtn` | | Function to customize the icon/content of previous button | |
+| `nextBtn` | | Function to customize the icon/content of next button | |
 | `onClickDay` | `day` | Calls the function when a day is clicked | |
 
 

@@ -249,6 +249,7 @@ const Calendar: React.FunctionComponent<ICalendarProps> = ({
             isHoliday,
             events,
             index,
+            eventType
           })
           : null
         }
@@ -286,7 +287,7 @@ const Calendar: React.FunctionComponent<ICalendarProps> = ({
   };
 
   return (
-    <div className="flex-col calender">
+    <div className="flex-col calendar">
       {true ? renderHeader() : null}
       {displayWeek ? renderWeekDays() : null}
       <div className="flex flex-col dates">

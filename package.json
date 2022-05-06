@@ -1,6 +1,21 @@
 {
   "name": "@hammaadhrasheedh/react-event-calendar",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "keywords": [
+    "calendar",
+    "react-calendar",
+    "eact-event-calendar",
+    "react"
+  ],
+  "author": {
+    "name": "Hammaadh Rasheedh",
+    "email": "hammaadhrasheedh@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hammaadhrasheedh/react-event-calendar"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
