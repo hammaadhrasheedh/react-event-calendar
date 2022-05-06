@@ -11,7 +11,7 @@ A small & customizable react calendar component to show your daily events for a 
 - Show Holidays
 - Click a day to get the data to showcase on another component
 
-## Features
+## Demo
 [Demo](https://codesandbox.io/s/sample-for-hammaadhrasheedh-react-event-calendar-eg6fv6)
 
 ## Installation
